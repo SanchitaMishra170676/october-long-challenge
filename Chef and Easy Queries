@@ -1,0 +1,62 @@
+Chef published a blog post, and is now receiving many queries about it. On day i, he receives Qi queries. But Chef can answer at most k queries in a single day.
+
+Chef always answers the maximum number of questions that he can on any given day (note however that this cannot be more than k). The remaining questions (if any) will be carried over to the next day.
+
+Fortunately, after n days, the queries have stopped. Chef would like to know the first day during which he has some free time, i.e. the first day when he answered less than k questions.
+
+
+
+/////////////////////////////////////////////////////////CODE///////////////////////////////////////////////////////////////////
+
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner sc = new Scanner (System.in);
+		int t = sc.nextInt();
+		while(t-- >0){
+		    int n = sc.nextInt();
+		   long k = sc.nextLong();
+		    long arr[] = new long[n];
+		    
+		    
+		    for (int i=0;i<n;i++){
+		        arr[i] = sc.nextLong();
+		    }
+		    
+		    long sum =0, ans=0,p=1;
+		    
+		    for(int i=0;i<n;i++){
+		        sum += arr[i];
+		        
+		        if(sum <k){
+		            ans = p;
+		            break;
+		        }
+		        
+		        sum = sum-k;
+		        ans = p;
+		        p++;
+		        
+		    }
+		    //System.out.println("ans befor if= "+ans);
+		    
+		    if (sum >k){
+		        long days = (sum/k)+1;
+		       // System.out.println("days = "+days);
+		        ans+=days;
+		    }
+		    
+		    System.out.println(ans);
+		    
+		}
+	}
+}
